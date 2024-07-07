@@ -1,5 +1,9 @@
 # 深度学习模板
 
+- Python 3.9.18
+- torch 2.1.1+cu121
+- torchsummary 1.5.1
+
   ```mermaid
     graph LR
       深度学习-->  图像数据
