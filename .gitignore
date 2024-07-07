@@ -1,0 +1,4 @@
+__pycache__/
+data/
+!have-own-data/written-num/data/
+result/
