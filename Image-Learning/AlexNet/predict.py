@@ -6,7 +6,7 @@ from sklearn import metrics
 from model import AlexNet
 from data import test_loader, class_label
 
-MODEL_PATH = "./AlexNet/result/model_trained.pt"
+MODEL_PATH = "./AlexNet/model_trained.pt"
 
 
 if __name__ == "__main__":

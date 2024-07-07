@@ -6,7 +6,7 @@ from sklearn import metrics
 from model import GoogLeNet
 from data import test_loader, class_label
 
-MODEL_PATH = "./GoogLeNet/result/model_trained-10.pt"
+MODEL_PATH = "./GoogLeNet/model_trained-10.pt"
 
 
 if __name__ == "__main__":

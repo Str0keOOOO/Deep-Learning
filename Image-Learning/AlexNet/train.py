@@ -7,7 +7,7 @@ from data import train_loder, eval_loder
 
 LR = 0.001
 EPOCHS = 1
-MODEL_PATH = "./AlexNet/result/model_trained.pt"
+MODEL_PATH = "./AlexNet/model_trained.pt"
 
 
 if __name__ == "__main__":

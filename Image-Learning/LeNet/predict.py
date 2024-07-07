@@ -6,7 +6,7 @@ from sklearn import metrics
 from model import Lenet
 from data import test_loader, class_label
 
-MODEL_PATH = "./LeNet/result/model_trained.pt"
+MODEL_PATH = "./LeNet/model_trained.pt"
 
 
 if __name__ == "__main__":
