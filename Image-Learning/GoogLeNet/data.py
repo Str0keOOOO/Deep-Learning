@@ -7,7 +7,7 @@ from torch.utils.data import DataLoader, random_split
 SIZE = 224
 BATCH_SIZE = 64
 NUM_WORKERS = 2
-DATA_PATH="./GoogLeNet/data"
+DATA_PATH="./Image-Learning/GoogLeNet/data"
 
 data_trained = FashionMNIST(
     root=DATA_PATH,

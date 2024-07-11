@@ -7,7 +7,7 @@ from data import train_loder, eval_loder
 
 LR = 0.001
 EPOCHS = 10
-MODEL_PATH = "./GoogLeNet/model_trained.pt"
+MODEL_PATH = "./Image-Learning/GoogLeNet/model_trained.pt"
 
 
 if __name__ == "__main__":

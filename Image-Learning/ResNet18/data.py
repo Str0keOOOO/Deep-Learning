@@ -8,7 +8,7 @@ from torch.utils.data import DataLoader, random_split
 SIZE = 224
 BATCH_SIZE = 24
 NUM_WORKERS = 2
-DATA_PATH = "./ResNet18/data"
+DATA_PATH = "./Image-Learning/ResNet18/data"
 
 data_trained = FashionMNIST(
     root=DATA_PATH,

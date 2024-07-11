@@ -6,7 +6,7 @@ from sklearn import metrics
 from model import ResNet18
 from data import test_loader, class_label
 
-MODEL_PATH = "./ResNet18/model_trained.pt"
+MODEL_PATH = "./Image-Learning/ResNet18/model_trained.pt"
 
 
 if __name__ == "__main__":

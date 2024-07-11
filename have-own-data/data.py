@@ -6,8 +6,8 @@ from torchvision import transforms
 from PIL import Image
 from torch.utils.data import Dataset, DataLoader, random_split
 
-DATAPATH = "./written-num/data"
-LABELPATH = "./written-num/label/label.txt"
+DATAPATH = "./have-own-data/written-num/data"
+LABELPATH = "./have-own-data/written-num/label/label.txt"
 SIZE = 224
 BATCH_SIZE = 24
 NUM_WORKERS = 2
