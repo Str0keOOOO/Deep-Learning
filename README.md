@@ -21,15 +21,15 @@
 ## 图像数据
 
 ```powershell
-ls Deep-Learn
-ls Image-Learning
+cd Deep-Learning
+cd Image-Learning
 ```
 
 ## 构建自己的数据集
 
 ```powershell
-ls Deep-Learn
-ls have-own-data
+cd Deep-Learning
+cd have-own-data
 ```
 
 ## gpu-test
@@ -37,7 +37,16 @@ ls have-own-data
 测试构建DataLoader的最适合num_workers
 
 ```powershell
-ls Deep-Learn
-ls gpu-test
+cd Deep-Learning
+cd gpu-test
 ```
 
+## 注意
+
+### 关于路径
+
+代码报错的第一可能是因为相对路径错误，请查看是否在指定的正确工作区或者自行修改路径参数
+
+### 显存上溢
+
+请修改batch_size

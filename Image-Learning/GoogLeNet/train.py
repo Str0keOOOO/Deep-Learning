@@ -27,7 +27,7 @@ if __name__ == "__main__":
     best_acc = 0
     for epoch in range(EPOCHS):
         print("-" * 20)
-        print(f"{epoch}/{EPOCHS}")
+        print(f"{epoch+1}/{EPOCHS}")
         # 设置训练模式
         model.train()
         train_loss = 0
