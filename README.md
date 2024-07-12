@@ -22,14 +22,14 @@
 
 ```powershell
 cd Deep-Learning
-cd Image-Learning
 ```
 
 ## 构建自己的数据集
 
+两种方法
+
 ```powershell
 cd Deep-Learning
-cd have-own-data
 ```
 
 ## gpu-test
@@ -38,7 +38,6 @@ cd have-own-data
 
 ```powershell
 cd Deep-Learning
-cd gpu-test
 ```
 
 ## 注意
