@@ -6,7 +6,7 @@ from model import ResNet18
 from data import train_loder, eval_loder
 
 LR = 0.001
-EPOCHS = 2
+EPOCHS = 10
 MODEL_PATH = "./Image-Learning/ResNet18/model_trained.pt"
 
 

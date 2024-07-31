@@ -20,25 +20,17 @@
 
 ## 图像数据
 
-```powershell
-cd Deep-Learning
-```
-
 ## 构建自己的数据集
 
 两种方法
-
-```powershell
-cd Deep-Learning
-```
 
 ## gpu-test
 
 测试构建DataLoader的最适合num_workers
 
-```powershell
-cd Deep-Learning
-```
+## visualization
+
+可视化方法
 
 ## 注意
 

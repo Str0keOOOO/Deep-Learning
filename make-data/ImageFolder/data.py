@@ -1,11 +1,8 @@
-import os
 import numpy as np
-import pandas as pd
 import matplotlib.pyplot as plt
 from torchvision import transforms
-from PIL import Image
 from torchvision.datasets import ImageFolder
-from torch.utils.data import Dataset, DataLoader, random_split
+from torch.utils.data import DataLoader, random_split
 
 PATH = "./make-data/ImageFolder"
 SIZE = 224

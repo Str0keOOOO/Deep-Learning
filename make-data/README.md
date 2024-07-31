@@ -2,6 +2,10 @@
 
 ## 方法一：制作Dataset
 
+### 注意
+
+预测集没有label，可以在Dataset中return对应的名字，这样就可以把预测的名字和相应预测标签对应起来
+
 ## 方法二：制作ImageFolder
 
 需要将图片保存为形如以下的结构：
@@ -16,7 +20,4 @@ make-data/ImageFolder/
 └── dog/
     ├── 1.jpg
     └── 2.jpg
-
-
 ```
-
