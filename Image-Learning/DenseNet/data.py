@@ -4,11 +4,10 @@ from torchvision.datasets import FashionMNIST
 from torchvision import transforms
 from torch.utils.data import DataLoader, random_split
 
-# BATCH_SIZE的设置尽可能大一些 过小的BATCH_SIZE可能会导致不收敛,此时也可以用减小全连接层来让网络收敛，同时也可以减小param
 SIZE = 224
-BATCH_SIZE = 24
-NUM_WORKERS = 2
-DATA_PATH="./Image-Learning/VGGNet16/data"
+BATCH_SIZE = 64
+NUM_WORKERS = 0
+DATA_PATH="./Image-Learning/DenseNet/data"
 
 data_trained = FashionMNIST(
     root=DATA_PATH,

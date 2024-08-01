@@ -2,16 +2,16 @@ import numpy as np
 import matplotlib.pyplot as plt
 import torch
 import torch.nn as nn
-from model import VGG16
+from model import DenseNet121
 from data import train_loader, eval_loader
 
 LR = 0.001
-EPOCHS = 5
-MODEL_PATH = "./Image-Learning/VGGNet16/model_trained.pt"
+EPOCHS = 2
+MODEL_PATH = "./Image-Learning/DenseNet/model_trained.pt"
 
 
 if __name__ == "__main__":
-    model = VGG16()
+    model = DenseNet121()
     # 我们要确保的是模型中用到数据要和模型在一个device（GPU或者CPU）上面，其他的数据不需要管。
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     # Adam优化器

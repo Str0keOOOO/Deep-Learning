@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import torch
 import torch.nn as nn
 from model import ResNet18
-from data import train_loder, eval_loder
+from data import train_loader, eval_loader
 
 LR = 0.001
 EPOCHS = 10
@@ -33,7 +33,7 @@ if __name__ == "__main__":
         train_loss = 0
         train_corrects = 0
         train_num = 0
-        for step, (b_x, b_y) in enumerate(train_loder):
+        for step, (b_x, b_y) in enumerate(train_loader):
             b_x = b_x.to(device)
             b_y = b_y.to(device)
             output = model(b_x)  # 模型输出
@@ -59,7 +59,7 @@ if __name__ == "__main__":
         eval_loss = 0
         eval_corrects = 0
         eval_num = 0
-        for step, (b_x, b_y) in enumerate(eval_loder):
+        for step, (b_x, b_y) in enumerate(eval_loader):
             b_x = b_x.to(device)
             b_y = b_y.to(device)
             output = model(b_x)  # 模型输出

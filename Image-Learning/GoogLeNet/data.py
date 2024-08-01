@@ -24,10 +24,10 @@ lengths = [
 ]
 
 train_data, eval_data = random_split(data_trained, lengths)
-train_loder = DataLoader(
+train_loader = DataLoader(
     dataset=train_data, batch_size=BATCH_SIZE, shuffle=True, num_workers=NUM_WORKERS
 )
-eval_loder = DataLoader(
+eval_loader = DataLoader(
     dataset=eval_data, batch_size=BATCH_SIZE, shuffle=True, num_workers=NUM_WORKERS
 )
 
