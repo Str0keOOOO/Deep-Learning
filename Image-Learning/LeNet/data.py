@@ -48,14 +48,14 @@ class_label = data_trained.classes
 
 
 if __name__ == "__main__":
-    loder = DataLoader(
+    loader = DataLoader(
         dataset=data_trained,
         batch_size=BATCH_SIZE,
         shuffle=True,
         num_workers=NUM_WORKERS,
     )
     # 第一个批次数据
-    for step, (b_x, b_y) in enumerate(loder):
+    for step, (b_x, b_y) in enumerate(loader):
         if step > 0:
             break
     batch_x = b_x.squeeze().numpy()

@@ -21,6 +21,9 @@
 ## 图像学习
 torchModel为torch.nn.Module的子类，可继承该类实现自己的模型
 
+## 信号学习
+Sequence-Learing为信号学习
+
 ## 构建自己的数据集
 
 两种方法

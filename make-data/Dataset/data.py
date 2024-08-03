@@ -63,14 +63,14 @@ eval_loader = DataLoader(
 class_label = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 if __name__ == "__main__":
-    loder = DataLoader(
+    loader = DataLoader(
         dataset=data_trained,
         batch_size=BATCH_SIZE,
         shuffle=True,
         num_workers=NUM_WORKERS,
     )
     # 第一个批次数据
-    for step, (b_x, b_y) in enumerate(loder):
+    for step, (b_x, b_y) in enumerate(loader):
         if step > 0:
             break
     # matplotlib彩色图像通道不一样[N, channel, height, width]转换为[width, height, channel]

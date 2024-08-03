@@ -33,14 +33,14 @@ print(data[0][0])
 
 class_label = data.classes
 if __name__ == "__main__":
-    loder = DataLoader(
+    loader = DataLoader(
         dataset=data,
         batch_size=BATCH_SIZE,
         shuffle=True,
         num_workers=NUM_WORKERS,
     )
     # 第一个批次数据
-    for step, (b_x, b_y) in enumerate(loder):
+    for step, (b_x, b_y) in enumerate(loader):
         if step > 0:
             break
     # matplotlib彩色图像通道不一样[N, channel, height, width]转换为[width, height, channel]
