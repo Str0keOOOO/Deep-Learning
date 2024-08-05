@@ -22,4 +22,4 @@ if __name__ == "__main__":
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = LSTM().to(device)
     out = model(torch.randn(32, 10, 3).to(device))
-    print(out.shape)
+    print(out.size())
