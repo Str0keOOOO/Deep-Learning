@@ -40,12 +40,12 @@ class CNN(nn.Module):
             nn.Softmax(dim=1),
         )
 
-    def forward(self, inputs):
-        inputs = inputs.view(inputs.size()[0], 1, inputs.size()[1])
-        inputs = self.conv_unit(inputs)
-        inputs = inputs.view(inputs.size()[0], -1)
-        inputs = self.dense_unit(inputs)
-        return inputs
+    def forward(self, input):
+        input = input.view(input.size()[0], 1, input.size()[1])
+        input = self.conv_unit(input)
+        input = input.view(input.size()[0], -1)
+        input = self.dense_unit(input)
+        return input
 
 
 if __name__ == "__main__":
