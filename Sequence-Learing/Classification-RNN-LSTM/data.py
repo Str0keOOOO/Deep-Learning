@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
 from torch.utils.data import Dataset, DataLoader, random_split
 
 TIME_STEP = 40  # 时间步数 / 图片高度
@@ -28,7 +27,7 @@ class MyDataset(Dataset):
             "./Sequence-Learing/Classification-RNN-LSTM/bear_fault/sample/4.csv"
         )
         sample = pd.concat([sample_0, sample_1, sample_2, sample_3, sample_4], axis=1)
-        self.features = np.array(sample)[:1200].T
+        self.features = np.array(sample.fillna(0))[:1200].T
         self.labels = np.concatenate(
             (
                 np.array([0] * sample_0.shape[1]),
@@ -83,7 +82,7 @@ if __name__ == "__main__":
 
     # 可视化
     plt.figure(figsize=(12, 5))
-    for ii in range(4):
+    for ii in range(3):
         plt.plot(batch_x[ii], label=class_label[batch_y[ii]])
     plt.title("Bear Fault Classification")
     plt.xlabel("Time")

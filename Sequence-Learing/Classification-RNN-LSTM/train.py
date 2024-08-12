@@ -5,8 +5,8 @@ import torch.nn as nn
 from model import LSTM
 from data import train_loader, eval_loader
 
-LR = 0.001
-EPOCHS = 10
+LR = 0.0001
+EPOCHS = 100
 MODEL_PATH = "./Sequence-Learing/Classification-RNN-LSTM/model_trained.pt"
 
 
@@ -33,8 +33,8 @@ if __name__ == "__main__":
         train_loss = 0
         train_corrects = 0
         train_num = 0
-        for step, (b_x, b_y) in enumerate(train_loader):
-            b_x = b_x.view(-1, 40, 30).float().to(device)
+        for step, (b_x, b_y) in enumerate(train_loader):     
+            b_x = b_x.view(-1, 1, 1200).float().to(device)
             b_y = b_y.long().to(device)
             output = model(b_x)  # 模型输出
             pre_lab = torch.argmax(output, dim=1)  # softmax标签值
@@ -60,7 +60,7 @@ if __name__ == "__main__":
         eval_corrects = 0
         eval_num = 0
         for step, (b_x, b_y) in enumerate(eval_loader):
-            b_x = b_x.view(-1, 40, 30).float().to(device)
+            b_x = b_x.view(-1, 1, 1200).float().to(device)
             b_y = b_y.long().to(device)
             output = model(b_x)  # 模型输出
             pre_lab = torch.argmax(output, dim=1)  # softmax标签值
