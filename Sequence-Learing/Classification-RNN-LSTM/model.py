@@ -6,12 +6,12 @@ class LSTM(nn.Module):
     def __init__(self):
         super().__init__()
         self.rnn = nn.LSTM(  # LSTM效果要比nn.RNN()好多了,如果想要用RNN就将LSTM改成RNN即可
-            input_size=1200,  # 图片每行的数据28像素点
-            hidden_size=64,  # rnn hidden unit
+            input_size=4,  # 4个特征
+            hidden_size=256,  # rnn hidden unit
             num_layers=3,  # 有几层 RNN layers
             batch_first=True,  # input & output 会是以 batch size 为第一维度的特征集 e.g. (batch, time_step, input_size)
         )
-        self.out = nn.Linear(64, 5)  # 输出层
+        self.out = nn.Linear(256, 6)  # 输出层
 
     def forward(self, x):
         r_out, _ = self.rnn(x, None)  # None 表示 hidden state 会用全0的 state
@@ -23,5 +23,5 @@ if __name__ == "__main__":
     # 检查模型并输出参数
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = LSTM().to(device)
-    out = model(torch.randn(64, 1, 1200).to(device))
+    out = model(torch.randn(10, 480, 4).to(device))
     print(out.size())

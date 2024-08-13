@@ -22,7 +22,7 @@
 torchModel为torch.nn.Module的子类，可继承该类实现自己的模型
 
 ## 信号学习 --by Dragon 
-Sequence-Learing为信号学习
+Sequence-Learing为循环神经网络
 
 ## 构建自己的数据集
 

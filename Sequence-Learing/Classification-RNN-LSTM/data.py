@@ -1,73 +1,87 @@
 import numpy as np
-import pandas as pd
+import os
 import matplotlib.pyplot as plt
+import pandas as pd
 from torch.utils.data import Dataset, DataLoader, random_split
 
-TIME_STEP = 40  # 时间步数 / 图片高度
-INPUT_SIZE = 30  # 每步输入值 / 图片每行像素
-BATCH_SIZE = 64
+BATCH_SIZE = 50
 NUM_WORKERS = 0
+DATA_PATH = "./Sequence-Learing/Classification-RNN-LSTM/data/"
 
 
 class MyDataset(Dataset):
     def __init__(self):
-        sample_0 = pd.read_csv(
-            "./Sequence-Learing/Classification-RNN-LSTM/bear_fault/sample/0.csv"
-        )
-        sample_1 = pd.read_csv(
-            "./Sequence-Learing/Classification-RNN-LSTM/bear_fault/sample/1.csv"
-        )
-        sample_2 = pd.read_csv(
-            "./Sequence-Learing/Classification-RNN-LSTM/bear_fault/sample/2.csv"
-        )
-        sample_3 = pd.read_csv(
-            "./Sequence-Learing/Classification-RNN-LSTM/bear_fault/sample/3.csv"
-        )
-        sample_4 = pd.read_csv(
-            "./Sequence-Learing/Classification-RNN-LSTM/bear_fault/sample/4.csv"
-        )
-        sample = pd.concat([sample_0, sample_1, sample_2, sample_3, sample_4], axis=1)
-        self.features = np.array(sample.fillna(0))[:1200].T
-        self.labels = np.concatenate(
-            (
-                np.array([0] * sample_0.shape[1]),
-                np.array([1] * sample_1.shape[1]),
-                np.array([2] * sample_2.shape[1]),
-                np.array([3] * sample_3.shape[1]),
-                np.array([4] * sample_4.shape[1]),
-            )
-        )
+        self.features = []
+        self.labels = []
+        for i in range(6):
+            file_path = os.path.join(DATA_PATH, f"{i}")
+            for filename in os.listdir(file_path):
+                if filename.endswith(".csv"):
+                    csv_path = os.path.join(file_path, filename)
+                    csv_data = pd.read_csv(csv_path, header=None)
+                    csv_data = np.array(csv_data[:480])
+                    self.features.append(csv_data)
+                    self.labels.append(i)
 
     # 返回数据集大小
     def __len__(self):
-        return self.features.shape[0]
+        return len(self.features)
 
+    # 返回数据集中第index个样本的特征和标签
     def __getitem__(self, index):
         return self.features[index], self.labels[index]
 
 
 data_trained = MyDataset()
-lengths = [
-    round(0.8 * len(data_trained)),
-    len(data_trained) - round(0.8 * len(data_trained)),
+
+lengths_1 = [
+    round(0.7 * len(data_trained)),
+    len(data_trained) - round(0.7 * len(data_trained)),
+]
+train_data, eval_data = random_split(data_trained, lengths_1)
+
+lengths_2 = [
+    round(0.9 * len(eval_data)),
+    len(eval_data) - round(0.9 * len(eval_data)),
 ]
 
-train_data, eval_data = random_split(data_trained, lengths)
+eval_data, test_data = random_split(eval_data, lengths_2)
+
 train_loader = DataLoader(
-    dataset=train_data, batch_size=BATCH_SIZE, shuffle=True, num_workers=NUM_WORKERS
+    dataset=train_data,
+    batch_size=BATCH_SIZE,
+    shuffle=True,
+    num_workers=NUM_WORKERS,
+    pin_memory=True,
 )
 eval_loader = DataLoader(
-    dataset=eval_data, batch_size=BATCH_SIZE, shuffle=True, num_workers=NUM_WORKERS
+    dataset=eval_data,
+    batch_size=BATCH_SIZE,
+    shuffle=True,
+    num_workers=NUM_WORKERS,
+    pin_memory=True,
+)
+test_loader = DataLoader(
+    dataset=test_data,
+    batch_size=BATCH_SIZE,
+    shuffle=True,
+    num_workers=NUM_WORKERS,
+    pin_memory=True,
 )
 
-
-class_label = ["正常", "内圈故障", "外圈故障", "滚动体故障", "保持架故障"]
-
+class_label = [
+    "蹲姿到站立(右蹲)",
+    "蹲姿到站立(左蹲)",
+    "行进",
+    "原地踏步",
+    "站立到蹲姿(右蹲)",
+    "站立到蹲姿(左蹲)",
+]
 
 if __name__ == "__main__":
     loader = DataLoader(
         dataset=data_trained,
-        batch_size=BATCH_SIZE,
+        batch_size=10,
         shuffle=True,
         num_workers=NUM_WORKERS,
     )
@@ -75,16 +89,11 @@ if __name__ == "__main__":
     for step, (b_x, b_y) in enumerate(loader):
         if step > 0:
             break
-    batch_x = b_x.squeeze().numpy()
-    batch_y = b_y.numpy()
-    print(f"所有类别{class_label}")
-    print(f"第{step}个批次的数据{batch_x.shape}, {batch_y.shape}")
-
-    # 可视化
-    plt.figure(figsize=(12, 5))
-    for ii in range(3):
-        plt.plot(batch_x[ii], label=class_label[batch_y[ii]])
-    plt.title("Bear Fault Classification")
-    plt.xlabel("Time")
-    plt.ylabel("Amplitude")
+    color = ["blue", "red", "green", "yellow", "purple", "orange"]
+    plt.figure(figsize=(12, 6))
+    for i in range(len(b_x)):
+        for j in range(4):
+            plt.subplot(2, 2, j + 1)
+            plt.plot(b_x[i, :, j].numpy(), color=color[b_y[i].item()])
+            plt.title(f"Feature {j}")
     plt.show()

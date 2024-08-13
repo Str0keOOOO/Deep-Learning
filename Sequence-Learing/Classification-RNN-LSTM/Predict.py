@@ -6,6 +6,9 @@ from sklearn import metrics
 from model import LSTM
 from data import test_loader, class_label
 
+plt.rcParams["font.family"] = "SimHei"  # 解决matplotlib中文显示乱码的问题
+plt.rcParams["axes.unicode_minus"] = False  # 解决保存图像是负号'-'显示为方块的问题
+
 MODEL_PATH = "./Sequence-Learing/Classification-RNN-LSTM/model_trained.pt"
 
 
@@ -24,8 +27,8 @@ if __name__ == "__main__":
     eval_num = 0
     with torch.no_grad():  # 确保不会进行反向传播计算梯度，节省内存和计算资源
         for step, (b_x, b_y) in enumerate(test_loader):
-            b_x = b_x.view(-1, 28, 28).to(device)
-            b_y = b_y.to(device)
+            b_x = b_x.float().to(device)
+            b_y = b_y.long().to(device)
             output = model(b_x)  # 模型输出
             pre_lab = torch.argmax(output, dim=1)  # softmax标签值
             # 结果输出
@@ -45,5 +48,4 @@ if __name__ == "__main__":
         xticklabels=class_label,
         yticklabels=class_label,
     )
-
     plt.show()
