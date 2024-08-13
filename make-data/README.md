@@ -21,3 +21,7 @@ make-data/ImageFolder/
     ├── 1.jpg
     └── 2.jpg
 ```
+
+## 方法三：制作TensorDataset
+
+TensorDataset是一个组合了多个Tensor的数据集类。它继承自Dataset类，与Dataset类相比，TensorDataset在处理数据集时更加方便。
