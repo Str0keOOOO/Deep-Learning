@@ -8,7 +8,7 @@ class LSTM(nn.Module):
         self.lstm = nn.LSTM(
             input_size=3, hidden_size=64, num_layers=2, batch_first=True
         )  # LSTM效果要比nn.RNN()好多了,如果想要用RNN就将LSTM改成RNN即可
-        self.fc = nn.Sequential(nn.Linear(64, 32), nn.ReLU(), nn.Linear(32, 1))
+        self.fc = nn.Sequential(nn.Linear(64, 1))
 
     def forward(self, x):
         # 需要输入的向量维度是三维（即形状为 (batch_size, sequence_length, 3)）

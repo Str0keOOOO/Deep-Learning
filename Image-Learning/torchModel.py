@@ -1,6 +1,13 @@
 import torch
 import torchvision.models as models
 
+"""
+pretrained=True表示使用预训练模型,False表示不使用预训练模型,
+这个模型指的是 ImageNet 数据集上训练的模型。是一个超级大的模型，
+下载时间比较长。
+"""
+
+
 # 使用预定义的 ResNet-18 模型
 resnet18 = models.resnet18(pretrained=False)
 

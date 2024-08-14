@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from torch.utils.data import Dataset, DataLoader, random_split
 
-BATCH_SIZE = 50
+BATCH_SIZE = 5
 NUM_WORKERS = 0
 DATA_PATH = "./Sequence-Learing/Regression-CNN/data.csv"
 

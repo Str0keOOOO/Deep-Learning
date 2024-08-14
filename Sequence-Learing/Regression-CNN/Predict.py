@@ -30,6 +30,9 @@ if __name__ == "__main__":
             b_y = b_y.float().to(device)
             output = model(b_x)  # 模型输出
             eval_num += b_x.size(0)
+            differences = b_y.cpu().numpy() - output.cpu().numpy()
+            mse = np.mean(np.square(differences))
+            print(f"Batch {step} MSE: {mse}")
             plt.scatter(b_y.cpu().numpy(), output.cpu().numpy())
     plt.xlabel("真实值")
     plt.ylabel("预测值")

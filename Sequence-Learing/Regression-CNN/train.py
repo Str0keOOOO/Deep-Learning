@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 from model import CNN
 from data import train_loader, eval_loader
 
-LR = 0.001
-EPOCHS = 100
+LR = 0.0001
+EPOCHS = 1000
 MODEL_PATH = "./Sequence-Learing/Regression-CNN/model_trained.pt"
 
 
@@ -30,8 +30,6 @@ if __name__ == "__main__":
         model.train()
         train_loss = 0
         train_num = 0
-        data_loading_time = 0
-        training_time = 0
         for b_x, b_y in train_loader:
             b_x = b_x.view(-1, 1, 246).float().to(device)
             b_y = b_y.float().to(device)
@@ -45,8 +43,6 @@ if __name__ == "__main__":
             train_num += b_x.size(0)
 
         print(f"train_loss:{train_loss / train_num}")
-        print(f"Data Loading Time: {data_loading_time:.2f} seconds")
-        print(f"Training Time: {training_time:.2f} seconds")
         train_loss_all = np.append(train_loss_all, train_loss / train_num)
 
         # 设置评估模式
@@ -56,7 +52,7 @@ if __name__ == "__main__":
         with torch.no_grad():
             for b_x, b_y in eval_loader:
                 b_x = b_x.view(-1, 1, 246).float().to(device)
-                b_y = b_y.long().to(device)
+                b_y = b_y.float().to(device)
                 output = model(b_x)  # 模型输出
                 loss = criterion(output, b_y.unsqueeze(1))  # 计算损失函数
                 eval_loss += loss.item() * b_x.size(0)
