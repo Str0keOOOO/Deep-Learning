@@ -5,7 +5,7 @@ import torch.nn as nn
 class LSTM(nn.Module):
     def __init__(self):
         super().__init__()
-        self.rnn = nn.LSTM(  # LSTM效果要比nn.RNN()好多了,如果想要用RNN就将LSTM改成RNN即可
+        self.rnn = nn.LSTM(  # LSTM效果要比nn.RNN()好多了,如果想要用RNN就将LSTM改成RNN即可,而GRU相对于LSTM更加简化
             input_size=4,  # 4个特征
             hidden_size=256,  # rnn hidden unit
             num_layers=3,  # 有几层 RNN layers

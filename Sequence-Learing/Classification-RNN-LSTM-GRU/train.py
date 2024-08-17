@@ -7,7 +7,7 @@ from data import train_loader, eval_loader
 
 LR = 0.0001
 EPOCHS = 200
-MODEL_PATH = "./Sequence-Learing/Classification-RNN-LSTM/model_trained.pt"
+MODEL_PATH = "./Sequence-Learing/Classification-RNN-LSTM-GRU/model_trained.pt"
 
 
 if __name__ == "__main__":

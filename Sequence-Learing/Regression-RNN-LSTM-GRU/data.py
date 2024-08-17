@@ -6,12 +6,12 @@ from torch.utils.data import TensorDataset, DataLoader, random_split
 
 BATCH_SIZE = 32
 NUM_WORKERS = 0
-DATA_PATH = "./Sequence-Learing/Regression-RNN-LSTM/3x2y.csv"
+DATA_PATH = "./Sequence-Learing/Regression-RNN-LSTM-GRU/3x2y.csv"
 
 data_pds = pd.read_csv(DATA_PATH)
 data = np.array(data_pds.iloc[:, 0:3])
 label = np.array(data_pds.iloc[:, 3])
-print(data)
+
 data = torch.tensor(data, dtype=torch.float32).unsqueeze(1)
 label = torch.tensor(label, dtype=torch.float32)
 data_trained = TensorDataset(data, label)

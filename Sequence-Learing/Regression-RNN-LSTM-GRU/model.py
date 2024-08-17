@@ -7,7 +7,7 @@ class LSTM(nn.Module):
         super(LSTM, self).__init__()
         self.lstm = nn.LSTM(
             input_size=3, hidden_size=64, num_layers=2, batch_first=True
-        )  # LSTM效果要比nn.RNN()好多了,如果想要用RNN就将LSTM改成RNN即可
+        )  # LSTM效果要比nn.RNN()好多了,如果想要用RNN就将LSTM改成RNN即可,而GRU相对于LSTM更加简化
         self.fc = nn.Sequential(nn.Linear(64, 1))
 
     def forward(self, x):

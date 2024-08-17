@@ -9,7 +9,7 @@ from data import test_loader, class_label
 plt.rcParams["font.family"] = "SimHei"  # 解决matplotlib中文显示乱码的问题
 plt.rcParams["axes.unicode_minus"] = False  # 解决保存图像是负号'-'显示为方块的问题
 
-MODEL_PATH = "./Sequence-Learing/Classification-RNN-LSTM/model_trained.pt"
+MODEL_PATH = "./Sequence-Learing/Classification-RNN-LSTM-GRU/model_trained.pt"
 
 
 if __name__ == "__main__":

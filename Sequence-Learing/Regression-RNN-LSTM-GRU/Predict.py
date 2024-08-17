@@ -2,7 +2,7 @@ import torch
 import numpy as np
 from model import LSTM
 
-MODEL_PATH = "./Sequence-Learing/Regression-RNN-LSTM/model_trained.pt"
+MODEL_PATH = "./Sequence-Learing/Regression-RNN-LSTM-GRU/model_trained.pt"
 
 if __name__ == "__main__":
     model = LSTM()

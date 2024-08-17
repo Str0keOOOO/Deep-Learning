@@ -7,8 +7,8 @@ from model import LSTM
 from data import train_loader, eval_loader
 
 LR = 0.001
-EPOCHS = 1000
-MODEL_PATH = "./Sequence-Learing/Regression-RNN-LSTM/model_trained.pt"
+EPOCHS = 100
+MODEL_PATH = "./Sequence-Learing/Regression-RNN-LSTM-GRU/model_trained.pt"
 
 
 if __name__ == "__main__":
