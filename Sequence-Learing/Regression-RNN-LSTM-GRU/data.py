@@ -1,42 +1,43 @@
-import numpy as np
-import matplotlib.pyplot as plt
 import pandas as pd
 import torch
-from torch.utils.data import TensorDataset, DataLoader, random_split
+from torch.utils.data import TensorDataset, DataLoader
 
-BATCH_SIZE = 32
+TIME_STEP = 8
+BATCH_SIZE = 1
 NUM_WORKERS = 0
-DATA_PATH = "./Sequence-Learing/Regression-RNN-LSTM-GRU/3x2y.csv"
 
-data_pds = pd.read_csv(DATA_PATH)
-data = np.array(data_pds.iloc[:, 0:3])
-label = np.array(data_pds.iloc[:, 3])
+# 读入数据,以闭市价作为股价构成标签
+sample_trained = pd.read_csv(
+    "./Sequence-Learing/Regression-RNN-LSTM-GRU/data_csv/train.csv"
+).loc[:, "close"]
+sample_tested = pd.read_csv(
+    "./Sequence-Learing/Regression-RNN-LSTM-GRU/data_csv/val.csv"
+).loc[:, "close"]
 
-data = torch.tensor(data, dtype=torch.float32).unsqueeze(1)
-label = torch.tensor(label, dtype=torch.float32)
-data_trained = TensorDataset(data, label)
 
-lengths = [
-    round(0.8 * len(data_trained)),
-    len(data_trained) - round(0.8 * len(data_trained)),
-]
-train_data, eval_data = random_split(data_trained, lengths)
+# 时间序列时间步长为8，通过前8个数据预测第9个
+def time_split(data):
+    x, y = [], []
+    for i in range(len(data) - TIME_STEP):
+        x.append([a for a in data[i : i + TIME_STEP]])
+        y.append([data[i + TIME_STEP]])
+    x = torch.tensor(x).reshape(-1, TIME_STEP, 1)
+    y = torch.tensor(y).float().reshape(-1, 1)
+    return x, y
+
+
+# 构造迭代器，返回
+data_trained = TensorDataset(*time_split(sample_trained))
+data_tested = TensorDataset(*time_split(sample_tested))
+
 
 train_loader = DataLoader(
-    dataset=train_data,
-    batch_size=BATCH_SIZE,
-    shuffle=True,
-    num_workers=NUM_WORKERS,
-    pin_memory=True,
-)
-eval_loader = DataLoader(
-    dataset=eval_data,
-    batch_size=BATCH_SIZE,
-    shuffle=True,
-    num_workers=NUM_WORKERS,
-    pin_memory=True,
+    dataset=data_trained, batch_size=BATCH_SIZE, shuffle=True, num_workers=NUM_WORKERS
 )
 
+test_loader = DataLoader(
+    dataset=data_tested, batch_size=BATCH_SIZE, shuffle=False, num_workers=NUM_WORKERS
+)
 
 if __name__ == "__main__":
     loader = DataLoader(
@@ -45,16 +46,7 @@ if __name__ == "__main__":
         shuffle=True,
         num_workers=NUM_WORKERS,
     )
-    # 第一个批次数据
     for step, (b_x, b_y) in enumerate(loader):
         if step > 0:
             break
     print(b_x.shape, b_y.shape)
-    batch_x = b_x.squeeze().numpy()
-    batch_y = b_y.numpy()
-    print(f"第{step}个批次的数据{batch_x, batch_y}")
-    # 绘制数据分布
-    fig = plt.figure()
-    ax = fig.add_subplot(projection="3d")
-    ax.scatter(batch_x[:, 0], batch_x[:, 1], batch_x[:, 2], c=batch_y, s=100, alpha=0.5)
-    plt.show()

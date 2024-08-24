@@ -6,7 +6,7 @@ from torch.utils.data import Dataset, DataLoader, random_split
 
 BATCH_SIZE = 50
 NUM_WORKERS = 0
-DATA_PATH = "./Sequence-Learing/Classification-RNN-LSTM-GRU/data/"
+DATA_PATH = "./Sequence-Learing/Classification-RNN-LSTM-GRU/data_csv/"
 
 
 class MyDataset(Dataset):

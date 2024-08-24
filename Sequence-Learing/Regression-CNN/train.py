@@ -7,7 +7,7 @@ from model import CNN
 from data import train_loader, eval_loader
 
 LR = 0.0001
-EPOCHS = 1000
+EPOCHS = 10
 MODEL_PATH = "./Sequence-Learing/Regression-CNN/model_trained.pt"
 
 

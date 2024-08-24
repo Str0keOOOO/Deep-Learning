@@ -4,7 +4,7 @@ import pandas as pd
 from torch.utils.data import Dataset, DataLoader
 from model import CNN
 
-TEST_PATH = "./Sequence-Learing/Classification-CNN/test.csv"
+TEST_PATH = "./Sequence-Learing/Classification-CNN/data_csv/test.csv"
 MODEL_PATH = "./Sequence-Learing/Classification-CNN/model_trained.pt"
 
 df_test = pd.read_csv(TEST_PATH)

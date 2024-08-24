@@ -1,12 +1,12 @@
+import numpy as np
 import torch
 import torch.optim as optim
 import torch.nn as nn
-import numpy as np
 import matplotlib.pyplot as plt
 from model import LSTM
-from data import train_loader, eval_loader
+from data import train_loader
 
-LR = 0.001
+LR = 0.01
 EPOCHS = 100
 MODEL_PATH = "./Sequence-Learing/Regression-RNN-LSTM-GRU/model_trained.pt"
 
@@ -22,19 +22,19 @@ if __name__ == "__main__":
     # 模型送入训练设备
     model = model.to(device)
     train_loss_all = np.array([])
-    eval_loss_all = np.array([])
     best_loss = float("inf")
     for epoch in range(EPOCHS):
+        print("-" * 20)
         print(f"{epoch+1}/{EPOCHS}")
         # 设置训练模式
         model.train()
         train_loss = 0
         train_num = 0
-        for b_x, b_y in train_loader:
+        for step, (b_x, b_y) in enumerate(train_loader):
             b_x = b_x.to(device)
             b_y = b_y.to(device)
             output = model(b_x)  # 模型输出
-            loss = criterion(output, b_y.unsqueeze(1))  # 计算损失函数
+            loss = criterion(output, b_y)  # 计算损失函数
             optimizer.zero_grad()  # 将梯度初始化为0
             loss.backward()  # 反向传播计算
             optimizer.step()  # 更新参数
@@ -45,26 +45,9 @@ if __name__ == "__main__":
         print(f"train_loss:{train_loss / train_num}")
         train_loss_all = np.append(train_loss_all, train_loss / train_num)
 
-        # 设置评估模式
-        model.eval()
-        eval_loss = 0
-        eval_num = 0
-        with torch.no_grad():
-            for b_x, b_y in eval_loader:
-                b_x = b_x.to(device)
-                b_y = b_y.to(device)
-                output = model(b_x)  # 模型输出
-                loss = criterion(output, b_y.unsqueeze(1))  # 计算损失函数
-                eval_loss += loss.item() * b_x.size(0)
-                eval_num += b_x.size(0)
-
-        print(f"eval_loss:{eval_loss / eval_num}")
-        print("-" * 20)
-        eval_loss_all = np.append(eval_loss_all, eval_loss / eval_num)
-
         # 寻找最低损失
-        if eval_loss_all[-1] < best_loss:
-            best_loss = eval_loss_all[-1]
+        if train_loss_all[-1] < best_loss:
+            best_loss = train_loss_all[-1]
         best_model_wts = model.state_dict()
 
     # 结果
@@ -84,18 +67,6 @@ if __name__ == "__main__":
         markersize="3",
         markeredgewidth=4,
         label="train_loss",
-    )
-    plt.plot(
-        eval_loss_all,
-        color="blue",
-        alpha=0.5,
-        linestyle="--",
-        linewidth=3,
-        marker="o",
-        markeredgecolor="blue",
-        markersize="3",
-        markeredgewidth=4,
-        label="eval_loss",
     )
     plt.legend()
     plt.grid()

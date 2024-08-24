@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from torch.utils.data import Dataset, DataLoader, random_split
 
-DF_PATH = "./Sequence-Learing/Classification-CNN/train.csv"
+DF_PATH = "./Sequence-Learing/Classification-CNN/data_csv/train.csv"
 SIZE = 224
 BATCH_SIZE = 24
 NUM_WORKERS = 2

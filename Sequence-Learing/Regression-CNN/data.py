@@ -1,12 +1,10 @@
 import numpy as np
-import os
-import matplotlib.pyplot as plt
 import pandas as pd
 from torch.utils.data import Dataset, DataLoader, random_split
 
 BATCH_SIZE = 5
 NUM_WORKERS = 0
-DATA_PATH = "./Sequence-Learing/Regression-CNN/data.csv"
+DATA_PATH = "./Sequence-Learing/Regression-CNN/data_csv/data.csv"
 
 
 class MyDataset(Dataset):
