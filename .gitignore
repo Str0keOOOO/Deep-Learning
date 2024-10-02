@@ -3,3 +3,4 @@ data/
 !have-own-data/written-num/data/
 result/
 *.pt
+!NLP/emotional-RNN-LSTM-GRU/data
