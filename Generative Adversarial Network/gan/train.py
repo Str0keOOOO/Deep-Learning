@@ -20,8 +20,8 @@ if __name__ == "__main__":
     # 交叉熵损失函数
     criterion = nn.BCELoss().cuda()
     # 模型送入训练设备
-    model = discriminator.to(device)
-    model = generator.to(device)
+    discriminator = discriminator.to(device)
+    generator = generator.to(device)
     for epoch in range(EPOCHS):
         for batch_idx, data in enumerate(data_loader):
             real_images, _ = data
