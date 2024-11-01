@@ -18,25 +18,29 @@
      	时序数据--> CNN
   ```
 
-## 图像学习
+### 图像学习
 torchModel为torch.nn.Module的子类，可继承该类实现自己的模型
 
-## 信号学习 --by Dragon 
+### 信号学习 --by Dragon 
 Sequence-Learing为循环神经网络
 
-## 自然语言处理
+### 自然语言处理
 
 NLP为自然语言处理
 
-## 构建自己的数据集
+### 生成对抗网络
+
+Generative Adversarial Network为生成对抗网络
+
+### 构建自己的数据集
 
 两种方法
 
-## gpu-test
+### gpu-test
 
 测试构建DataLoader的最适合num_workers
 
-## visualization
+### visualization
 
 可视化方法
 

@@ -1,5 +1,6 @@
 __pycache__/
 data/
+data_new/
 !have-own-data/written-num/data/
 result/
 *.pt
